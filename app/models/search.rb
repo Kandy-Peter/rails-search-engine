@@ -10,7 +10,7 @@ class Search < ActiveRecord::Base
     @data.empty? ? error="No results found for #{@query}" : results: @data
   end
 
-  def save
+  def save_search_activity
     @query_record = Query.find_by(recorded_session: @recorded_session)
     @query_increment = Query.find_by(user_id: @user_id, query: @query)
     @founded_query = Query.search(@query).user(@user_id).where(recorded_session: @recorded_session).first
