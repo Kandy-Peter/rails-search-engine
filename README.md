@@ -38,6 +38,20 @@ Or install it yourself as:
     $ ruby > 3.0.0
     $ postgresql > 13.3
 
+## Usage
+ to laod the articles from newsapi.org you need a `.env` file with:
+```ruby
+API_KEY=your_api_key
+```
+then run the command:
+```rails db:seed```
+## Author
+
+👤 **Kandy Peter Kamuntu**
+
+- Github: [@kandy-Peter]()
+- Twitter: [@kandy_peter](https://twitter.com/kandy_99)
+- Linkedin: [Kandy Peter Kamuntu](https://www.linkedin.com/in/kandy-peter-kamuntu-5b1b1b1b1/)
 
 
  
