@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="search-box-wrapper">
+    <input type="text" id='index-search-box' placeholder="Search..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search...'">
+  </div>
+  <div class="index-results-wrapper">
+    <div class="text-centar margin-top-5 index-welcome-wrapper" id='index-welcome'>
+      <h1>Welcome, how can we help?</h1>
+    </div>
+    <div class="index-articles-container" id='index-articles-container'>
+      <h2>Articles</h2>
+      <div class="index-articles-wrapper" id='index-articles-wrapper'>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_pack_tag 'search' %>

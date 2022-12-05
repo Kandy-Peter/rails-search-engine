@@ -15,10 +15,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_155553) do
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["content"], name: "index_articles_on_content"
+    t.index ["title"], name: "index_articles_on_title"
   end
 
   create_table "queries", force: :cascade do |t|
@@ -26,9 +28,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_155553) do
     t.string "query", null: false
     t.string "recorded_session", null: false
     t.boolean "found"
-    t.integer "counter", default: 0
+    t.integer "counter", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["query"], name: "index_queries_on_query"
+    t.index ["recorded_session"], name: "index_queries_on_recorded_session"
+    t.index ["user_id"], name: "index_queries_on_user_id"
   end
 
 end

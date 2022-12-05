@@ -1,19 +1,23 @@
-class Search < ActiveRecord::Base
+class Search < ApplicationRecord
   def initialize(results, address_ip)
-    @query= results[:search]
+    @query= results[:search].gsub(/[^0-9A-Za-z]/, '')
     @user_id= address_ip
     @recorded_session = data[:recorded_session]
   end
 
-  def search_data
-    @data = Article.search(@query).records.limit(10)
-    @data.empty? ? error="No results found for #{@query}" : results: @data
+  def search
+    @results = Article.search(@query).limit(10)
+    if @results.blank?
+      { error: 'No results found' }
+    else
+      { data: @results, error: nil }
+    end
   end
 
   def save_search_activity
     @query_record = Query.find_by(recorded_session: @recorded_session)
     @query_increment = Query.find_by(user_id: @user_id, query: @query)
-    @founded_query = Query.search(@query).user(@user_id).where(recorded_session: @recorded_session).first
+    @founded_query = Query.search(@query).user(@user_id).where(recorded_session: @recorded_session)
 
     @query_increment.nil? ? create_new_query : query_increment
 
@@ -22,6 +26,7 @@ class Search < ActiveRecord::Base
     @founded_query.each do |query|
       query.delete if included_and_shorter(query.query)
     end
+    puts 'New query created-----------------'
   end
 
   private
@@ -31,7 +36,7 @@ class Search < ActiveRecord::Base
   end
 
   def part_of_session?
-    @query_record.counter == 0 unless @query_record.nil?
+    @query_record.counter == 1 unless @query_record.nil?
   end
   
   def new_query?

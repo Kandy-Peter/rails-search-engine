@@ -2,9 +2,8 @@ class SearchController < ApplicationController
   before_action :current_user
 
   def search
-    datas ||= Search.new(permitted_params, @current_user)
-    result = datas.search
-    datas.save_search_activity
+    result = search_service.search
+    search_service.save_search_activity
     if result[:error].nil?
       render json: result
     else
@@ -13,6 +12,10 @@ class SearchController < ApplicationController
   end
 
   private
+
+  def search_service
+    @search_service ||= SearchService.new(permitted_params, @current_user)
+  end
 
   def permitted_params
     params.permit(:search, :user_id, :recorded_session)

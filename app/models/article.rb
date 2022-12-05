@@ -1,4 +1,4 @@
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   include PgSearch::Model # include the module
 
   pg_search_scope :search, against: %i[title content], using: {

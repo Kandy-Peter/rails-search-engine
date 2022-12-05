@@ -7,5 +7,7 @@ class AnalyticsController < ApplicationController
     @successfull_searches = @queries.select(&:found?)
     @unsuccessfull_searches = @queries.reject(&:found)
     @total_articles = Article.count
+
+    puts 'search results' + @queries.to_s
   end
 end
