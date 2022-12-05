@@ -1,6 +1,6 @@
-class Search < ApplicationRecord
-  def initialize(results, address_ip)
-    @query= results[:search].gsub(/[^0-9A-Za-z]/, '')
+class Search
+  def initialize(data, address_ip)
+    @query= data[:search].gsub(/[^0-9A-Za-z]/, '')
     @user_id= address_ip
     @recorded_session = data[:recorded_session]
   end
@@ -15,6 +15,7 @@ class Search < ApplicationRecord
   end
 
   def save_search_activity
+    puts 'New query created-----------------'
     @query_record = Query.find_by(recorded_session: @recorded_session)
     @query_increment = Query.find_by(user_id: @user_id, query: @query)
     @founded_query = Query.search(@query).user(@user_id).where(recorded_session: @recorded_session)

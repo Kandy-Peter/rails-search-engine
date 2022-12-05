@@ -14,7 +14,7 @@ class SearchController < ApplicationController
   private
 
   def search_service
-    @search_service ||= SearchService.new(permitted_params, @current_user)
+    @search_service ||= Search.new(permitted_params, @current_user)
   end
 
   def permitted_params
