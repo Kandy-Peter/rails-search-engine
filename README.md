@@ -1,24 +1,46 @@
-# README
+# RAILS REALTIME SEARHC ENGINE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+The rails realtime search engine is a simple search engine that allows you to search for a specific term in a specific model from Atricles, post , etc. It uses the [pgSearch gem] to search for the term in the database and returns the results in a realtime and save all queries in segment for only the current user.
 
-* Ruby version
+## Lve Demo
 
-* System dependencies
+[Live Demo Link](https://rails-realtime-search-engine.herokuapp.com/)
+## Installation
 
-* Configuration
+Add this line to your application's Gemfile:
 
-* Database creation
+```ruby
+gem 'chartkick'
+gem 'pg_search'
+```
 
-* Database initialization
+And then execute:
 
-* How to run the test suite
+    $ bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+Or install it yourself as:
+  
+      $ gem install pg_search
+      etc...
 
-* Deployment instructions
+## Start command
 
-* ...
+    $ rails db:create
+    $ rails db:migrate
+    $ rails db:seed
+    $ rails s
+
+## Prerequisites
+
+    $ rails > 7
+    $ ruby > 3.0.0
+    $ postgresql > 13.3
+
+
+
+ 
+
+
+
